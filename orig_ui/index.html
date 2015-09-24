@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+<link rel="prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.woff">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div class="my-player">
+
+  <h1 class="my-player__title">
+    <i class="fi-music"></i> My Player
+  </h1>
+
+  <div class="my-player__seek-box">
+    <input id="js-seek" class="my-player__seek-box__seek-range" type="range" min="0" step="1" value="0">
+    <div class="my-player__seek-box__current-time">
+      <span id="js-current_time">0</span> / <span id="js-duration">0</span>sec
+    </div>
+  </div>
+
+  <div class="my-player__control-box">
+    <button id="js-play_pause">
+      <i class="fi-play"></i>
+      <i class="fi-pause" style="display: none;"></i>
+    </button>
+    <button id="js-stop">
+      <i class="fi-stop"></i>
+    </button>
+    <button id="js-mute">
+      <i class="fi-volume"></i>
+      <i class="fi-volume-strike" style="display: none;"></i>
+    </button>
+    <input id="js-volume" class="my-player__control-box__volume-range" type="range" min="0" max="1" step="0.1">
+  </div>
+</div>
+
+<script src="./player.js"></script>
+<script src="./main.js"></script>
+</body>
+</html>

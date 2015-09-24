@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+</head>
+<body>
+<h1>利用できるイベント</h1>
+<div id="controls"></div>
+<div>
+  <button onclick="load()">Load</button>
+  <button onclick="play()">Play</button>
+  <button onclick="pause()">Pause</button>
+  <button onclick="vol()">Vol change</button>
+  <button onclick="pbr()">Pbr change</button>
+  <button onclick="error()">Error</button>
+</div>
+<pre id="pre">新しいイベント順に上に表示</pre>
+</body>
+<script>
+var controls = document.getElementById('controls');
+var audio = new Audio();
+audio.controls = true;
+controls.appendChild(audio);
+
+["loadstart","progress","suspend","abort","error","emptied","stalled","loadedmetadata","loadeddata","canplay","canplaythrough","playing","waiting","seeking","seeked","ended","durationchange","timeupdate","play","pause","ratechange","volumechange",""].forEach(function(e) {
+  audio.addEventListener(e, function() {
+    pre.textContent = e + '\n' + pre.textContent;
+  }, false);
+});
+
+function load()  { audio.src = './sample.m4a' }
+function play()  { audio.play(); }
+function pause() { audio.pause(); }
+function vol()   { audio.volume = Math.random(0, 1); }
+function pbr()   { audio.playbackRate = 0.5; }
+function error() { audio.src = ''; }
+</script>
+</html>
