@@ -1,0 +1,12 @@
+.tel-wrap {
+  width: 400px;
+  margin: 4em auto;
+  background-color: #eee;
+  text-align: center;
+}
+
+.tel-wrap__item {
+  width: 100px;
+  padding: 10px;
+  margin: 10px;
+}
