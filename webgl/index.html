@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>WebGL x Web Audio API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="info">
+      矢印キーで前後左右に移動すると、音の大きさと聞こえる位置が変わります。
+    </div>
+    <script src="three.js"></script>
+    <script src="volumetric-fire.js"></script>
+    <script type="x-shader/x-vertex" id="smoke-vertexshader">
+      attribute float shift;
+      uniform float time;
+      uniform float size;
+      uniform float lifetime;
+      uniform float projection;
+      varying float progress;
+
+      float cubicOut( float t ) {
+        float f = t - 1.0;
+        return f * f * f + 1.0;
+      }
+
+      void main () {
+        progress = fract( time * 2. / lifetime + shift );
+        float eased = cubicOut( progress );
+        vec3 pos = vec3( position.x * eased, position.y * eased, position.z );
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( pos, 1. );
+        gl_PointSize = ( projection * size ) / gl_Position.w;
+      }
+    </script>
+    <script type="x-shader/x-fragment" id="smoke-fragmentshader">
+      uniform sampler2D texture;
+      varying float progress;
+
+      void main() {
+        vec3 color = vec3( 1. );
+        gl_FragColor = texture2D( texture, gl_PointCoord ) * vec4( color, .3 * ( 1. - progress ) );
+      }
+    </script>
+    <script src="visual.js"></script>
+    <script src="audio.js"></script>
+  </body>
+</html>

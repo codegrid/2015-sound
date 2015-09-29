@@ -1,0 +1,14 @@
+html, body { background-color: #eee; }
+body { text-align: center; }
+
+.file-select-wrap {
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border: 2px dashed #ccc;
+}
+
+.note-wrap {
+  font-size: 0.5em;
+  text-align: left;
+}
