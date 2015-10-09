@@ -4,6 +4,7 @@
   var ctx = new global.AudioContext();
 
   global.document.getElementById('jsPlayBtn').addEventListener('click', play, false);
+  global.document.getElementById('jsStopBtn').addEventListener('click', stop, false);
   [].slice.call(global.document.getElementsByClassName('jsFilterRadio'))
     .forEach(function(el) {
       el.addEventListener('change', toggleFilter, false);
@@ -55,6 +56,11 @@
         _switchFilter();
         hasPlayed = true;
       });
+  }
+
+  function stop() {
+    if (!source) { return; }
+    source.stop(ctx.currentTime);
   }
 
   function _switchFilter() {
